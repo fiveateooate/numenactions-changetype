@@ -13,12 +13,6 @@ def main():
     parser.add_argument(
         "--loglevel", help="log level", default=os.environ.get("LOGLEVEL")
     )
-    parser.add_argument(
-        "--cmd",
-        help="command to run",
-        required=True,
-        choices=["build", "changetype", "lint", "prep", "release"],
-    )
     args = parser.parse_args()
     logger = numenactions.logging.logger_setup("numenactions", args.loglevel)
 
