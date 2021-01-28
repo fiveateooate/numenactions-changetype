@@ -1,0 +1,6 @@
+name: 'NumenActions ChangeType'
+description: 'Determine change type from commit'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  entrypoint: '/usr/local/bin/changetype'
