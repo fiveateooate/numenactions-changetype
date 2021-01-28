@@ -4,3 +4,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   entrypoint: '/usr/local/bin/changetype'
+  args:
+    - --loglevel
+    - debug
