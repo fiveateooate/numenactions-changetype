@@ -1,12 +1,32 @@
 #!/usr/bin/env python3
 
+import argparse
+import os
+
 import numenactions
+from sh import echo
 
 
 def main():
+
+    parser = argparse.ArgumentParser(description="NumenActions - They can do anything")
+    parser.add_argument(
+        "--loglevel", help="log level", default=os.environ.get("LOGLEVEL")
+    )
+    parser.add_argument(
+        "--cmd",
+        help="command to run",
+        required=True,
+        choices=["build", "changetype", "lint", "prep", "release"],
+    )
+    args = parser.parse_args()
+    logger = numenactions.logging.logger_setup("numenactions", args.loglevel)
+
+    logger.debug("runing changetype action")
     ct = numenactions.changetype.ChangeType()
     change = ct.changetype()
-    print(f"{change}")
+    logger.debug(f"changetype: {change}")
+    echo("::set-env", f"name=NUMENCHANGETYPE::{change}")
 
 
 if __name__ == "__main__":
