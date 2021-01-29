@@ -4,12 +4,10 @@ import argparse
 import os
 
 import numenactions
-from sh import echo
 
 
 def main():
-
-    parser = argparse.ArgumentParser(description="NumenActions - They can do anything")
+    parser = argparse.ArgumentParser(description="NumenActions - They can do anything!")
     parser.add_argument(
         "--loglevel", help="log level", default=os.environ.get("LOGLEVEL")
     )
@@ -20,7 +18,7 @@ def main():
     ct = numenactions.changetype.ChangeType()
     change = ct.changetype()
     logger.debug(f"changetype: {change}")
-    echo("::set-env", f"name=NUMENCHANGETYPE::{change}")
+    numenactions.envhelper.set_github_env("NUMEN_CHANGE_TYPE", change)
 
 
 if __name__ == "__main__":
