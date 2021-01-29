@@ -18,7 +18,8 @@ def main():
     ct = numenactions.changetype.ChangeType()
     change = ct.changetype()
     logger.debug(f"changetype: {change}")
-    numenactions.envhelper.set_github_env("NUMEN_CHANGE_TYPE", change)
+    eh = numenactions.envhelper.EnvHelper()
+    eh.set_github_env("NUMEN_CHANGE_TYPE", change)
 
 
 if __name__ == "__main__":
