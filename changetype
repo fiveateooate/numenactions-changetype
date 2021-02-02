@@ -3,7 +3,7 @@
 import argparse
 import os
 
-import numenactions
+from numenactions import ChangeType, EnvHelper, logger_setup
 
 
 def main():
@@ -12,13 +12,13 @@ def main():
         "--loglevel", help="log level", default=os.environ.get("LOGLEVEL")
     )
     args = parser.parse_args()
-    logger = numenactions.logging.logger_setup("numenactions", args.loglevel)
+    logger = logger_setup("numenactions", args.loglevel)
 
     logger.debug("runing changetype action")
-    ct = numenactions.changetype.ChangeType()
+    ct = ChangeType()
     change = ct.changetype()
     logger.debug(f"changetype: {change}")
-    eh = numenactions.envhelper.EnvHelper()
+    eh = EnvHelper()
     eh.set_github_env("NUMEN_CHANGE_TYPE", change)
 
 
