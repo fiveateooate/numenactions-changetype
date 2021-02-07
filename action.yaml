@@ -2,8 +2,9 @@ name: 'NumenActions ChangeType'
 description: 'Determine change type from commit'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
-  entrypoint: '/usr/local/bin/changetype'
+  image: 'ghcr.io/fiveateooate/numenactions:latest'
+  entrypoint: '/usr/local/bin/numencli'
   args:
     - --loglevel
     - debug
+    - changetype
